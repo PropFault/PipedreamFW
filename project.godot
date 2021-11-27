@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area",
+"class": "Chamber",
+"language": "GDScript",
+"path": "res://script/Chamber.gd"
+}, {
+"base": "Gas",
+"class": "CombustableGas",
+"language": "GDScript",
+"path": "res://script/DTO/CombustableGas.gd"
+}, {
+"base": "Reference",
+"class": "Gas",
+"language": "GDScript",
+"path": "res://script/DTO/Gas.gd"
+}, {
+"base": "Spatial",
+"class": "Valve",
+"language": "GDScript",
+"path": "res://script/Valve.gd"
+} ]
+_global_script_class_icons={
+"Chamber": "",
+"CombustableGas": "",
+"Gas": "",
+"Valve": ""
+}
+
+[application]
+
+config/name="MyLittleEngine"
+run/main_scene="res://test01.tscn"
+config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
