@@ -6,3 +6,6 @@ func _init(displayName):
 
 func _process(chamber, delta):
 	pass;
+
+func _process_internal_heatsource(chamber, effectiveLocalTemperature, delta):
+	pass;

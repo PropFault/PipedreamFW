@@ -1,15 +1,28 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://script/Valve.gd" type="Script" id=1]
 [ext_resource path="res://script/Atmosphere.gd" type="Script" id=2]
 [ext_resource path="res://script/Chamber.gd" type="Script" id=3]
 [ext_resource path="res://Engine Debugger.gd" type="Script" id=4]
+[ext_resource path="res://HexaneChamber.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 2.00448, 2.05165, 2.01069 )
 
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 4, 4, 4 )
+
+[sub_resource type="CapsuleMesh" id=4]
+
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 2.98945, 2.8106, 2.77652 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.431373, 0.25098, 0.25098, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
+size = Vector3( 5.978, 4, 4 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -17,23 +30,52 @@ extents = Vector3( 2.98945, 2.8106, 2.77652 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17741, 0, 0 )
 script = ExtResource( 3 )
 contents = {
+
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="Chamber"]
 shape = SubResource( 1 )
 
+[node name="MeshInstance" type="MeshInstance" parent="Chamber"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Chamber2" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5346, 0, 0 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Chamber2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Chamber2"]
+mesh = SubResource( 4 )
+material/0 = null
+
 [node name="Atmosphere" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90379, 0, 0 )
 script = ExtResource( 2 )
 contents = {
+
 }
 
 [node name="CollisionShape" type="CollisionShape" parent="Atmosphere"]
 shape = SubResource( 2 )
 
+[node name="MeshInstance2" type="MeshInstance" parent="Atmosphere"]
+mesh = SubResource( 6 )
+material/0 = null
+
 [node name="Valve" type="Spatial" parent="."]
 script = ExtResource( 1 )
 chamberAPath = NodePath("../Atmosphere")
 chamberBPath = NodePath("../Chamber")
+maxThroughput = 100000.0
+
+[node name="Valve2" type="Spatial" parent="."]
+script = ExtResource( 1 )
+chamberAPath = NodePath("../Chamber2")
+chamberBPath = NodePath("../Chamber")
+open = false
 maxThroughput = 100000.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

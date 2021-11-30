@@ -2,9 +2,9 @@ extends Spatial
 class_name Valve
 export(NodePath) var chamberAPath;
 export(NodePath) var chamberBPath;
-export(bool) onready var open = true;
-export(float) onready var maxThroughput = 10000;
-export(float) onready var minOpenPressureDelta = 100;
+export(bool) var open = true;
+export(float) var maxThroughput = 10000;
+export(float) var minOpenPressureDelta = 100;
 onready var chamberA = get_node(chamberAPath);
 onready var chamberB = get_node(chamberBPath);
 var shape;
